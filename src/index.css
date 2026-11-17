@@ -37,8 +37,11 @@
     --text: #ffffff;
     --text-h: #f4f5f7;
     /* --bg: #18212E; */
-    --bg: linear-gradient(45deg, #16171d, #1e303774, #41568f47);
+    /* --bg: linear-gradient(45deg, #0c0d10, #1e303774, #41568f47); */
+    --bg: linear-gradient(90deg, #161b2c, #1d394574, #41568f47);
+
     /* --bg: linear-gradient(45deg, #1f2239, #29444e88, #2a385f47); */
+    /* --bg: linear-gradient(45deg, #9bf8f4, #e64af590); */
     --border: #2e303a;
     --code-bg: #1f2028;
     --accent: #c084fc;

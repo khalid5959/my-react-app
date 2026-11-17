@@ -99,14 +99,14 @@ function RouterApp() {
   return (
     <BrowserRouter>
       <UserName.Provider value={{ name, setName, Cars, ItemCart, setItemCart }}>
-        <div className="routing_container min-w-176.25 p-5">
-          <div className="grid grid-cols-3 items-center w-full px-1">
+        <div className="routing_container h-fit p-5">
+          <div className="flex justify-between items-center w-full px-1">
             <div className="justify-self-start">
               <NavLink to="/Products" className="text-white sticky top-5 inline-block bg-linear-to-r from-[#c53222] to-orange-400 p-3 px-4 rounded-2xl transition duration-200 hover:text-black/50 active:scale-95"
               >Back</NavLink>
             </div>
-            <nav className="bg-linear-to-r from-[#c53222] to-orange-400 cursor-default transition duration-300 hover:-translate-y-1 hover:scale-100 w-fit mx-auto p-3 rounded-2xl">
-              <NavLink to="/Home" className={({ isActive }) =>
+            <nav className="bg-linear-to-r from-[#c53222] to-orange-400 cursor-default transition duration-300 hover:-translate-y-1 hover:scale-100 min-[700px]:w-fit min-w-55 mx-auto p-3 rounded-2xl">
+              <NavLink to="/" className={({ isActive }) =>
                 isActive ? "text-black/50 font-bold" : "text-white inline-block transition duration-300 hover:text-black/50"}
               >Home</NavLink> |{` `}
               <NavLink to="/Products" className={({ isActive }) =>
@@ -124,7 +124,7 @@ function RouterApp() {
 
 
           <Routes>
-            <Route path="/Home" element={<Home />} />
+            <Route path="/" element={<Home />} />
             <Route path="/Products" element={<Products />} />
             <Route path="/Products/:CarName" element={<CarPage/>} />
             <Route path="/Contact" element={<Contact />} />
@@ -140,12 +140,12 @@ function RouterApp() {
 function Contact() {
   const { name } = useContext(UserName);
   return (
-    <div className="bg-white/15 backdrop-blur-3xl text-wrap border border-white/20 rounded-2xl py-3 px-5 w-150 flex flex-col items-start shadow-xl m-auto mt-10">
+    <div className="bg-white/15 backdrop-blur-3xl text-wrap border border-white/20 rounded-2xl py-3 px-5 min-w-100 w-[70%] flex flex-col items-start shadow-xl m-auto mt-10">
       <p>Email: NYCcardealership@gmail.com</p>
       <p>Number: 765-293-266</p>
-      <p>Address: Brooklyn 21 street, Manhattan, NYC, USA</p>
+      <p className="text-left ">Address: Brooklyn 21 street, Manhattan, NYC, USA</p>
       <p className="text-left ">Message us, dear {name || "user"}:</p>
-      <textarea type="text" placeholder="write your email here" className="bg-black/40 backdrop-blur-1xl border border-white/20 rounded-2xl w-93 h-30 mt-1 px-2 py-2 resize-none" />
+      <textarea type="text" placeholder="write your email here" className="bg-black/40 backdrop-blur-1xl border border-white/20 rounded-2xl w-[80%] h-30 mt-1 px-2 py-2 resize-none" />
     </div>
   )
 }
@@ -154,7 +154,7 @@ function Contact() {
 function Products() {
   const {Cars} = useContext(UserName);
   return (
-    <div className="routing-carcontainer mt-10 grid grid-cols-3 justify-items-center">
+    <div className="routing-carcontainer mt-10 grid grid-cols-2 md:grid-cols-3 justify-items-center">
       {Cars.map((car) => (
         <div key={car.name} className="carboxes w-50 h-50 mb-10 transition duration-300 hover:scale-105 border-4 border-black/22 rounded-[20px] overflow-hidden">
           <Link to={`/Products/${car.name}`}>
@@ -192,11 +192,11 @@ function CarPage() {
   }
 
   return (
-    <div className="bg-black/25 backdrop-blur-3xl h-fit ml-5 mt-5  flex rounded-3xl overflow-hidden">
-      <img src={post.imgPortrait} alt="post pic" style={{ width: "35%" }} />
-      <div className="flex flex-col items-start justify-evenly ml-4 mt-1 mb-5">
-        <p className="text-4xl">{post.model}</p>
-        <div className="flex flex-col items-start justify-evenly mb-5 h-35">
+    <div className="bg-black/25 backdrop-blur-3xl h-80 mx-5 mt-5  flex rounded-3xl overflow-hidden">
+      <img src={post.imgPortrait} alt="post pic" className="w-[35%] object-cover" />
+      <div className="flex flex-col items-start justify-evenly mx-4 my-2 mb-5">
+        <p className="text-4xl text-left">{post.model}</p>
+        <div className="flex flex-col text-left items-start justify-evenly mt-2 mb-5 h-35">
           <p>Manufacturing Year: {post.year}</p>
           <p>Engine: {post.engine}</p>
           <p>Insurance: Included</p>
@@ -283,7 +283,7 @@ function Cart() {
   
   return (
     <div className="flex flex-col bg-white/10 backdrop-blur-2xl text-wrap 
-          border border-white/20 rounded-3xl p-3 mt-8 mx-auto min-h-80 w-[90%] min-w-160 
+          border border-white/20 rounded-3xl font-bold sm:font-normal p-3 mt-8 mx-auto min-h-80 w-[90%] min-w-110 
           max-w-200">
       <div className="grid grid-cols-3 items-center border-b pb-3 mb-2">
         <div></div>
@@ -293,7 +293,7 @@ function Cart() {
       </div>
       
       <div className="cart_lists flex flex-col gap-2">
-        <div className="cart_title grid grid-cols-[1fr_5fr_2fr_2fr] items-center border-b-2 border-white/90 pb-1 h-fit">
+        <div className="cart_title grid grid-cols-[1fr_5fr_3fr_2fr] items-center border-b-2 border-white/90 pb-1 h-fit">
           <div className="h-full flex items-center justify-center">
             no.
           </div>
@@ -313,14 +313,14 @@ function Cart() {
         ) : (
           <>
           {ItemCart.map((item, index) => (
-            <div key={item.id} className="grid grid-cols-[1fr_5fr_2fr_2fr] items-center border-b-2 border-white/40 pb-1  h-fit">
+            <div key={item.id} className="grid grid-cols-[1fr_5fr_3fr_2fr] items-center border-b-2 border-white/40 pb-1 min-h-10 h-fit">
               <div className="h-full flex items-center justify-center border-r-2">
                 {index + 1}
               </div>
               <div className="grid grid-cols-[1fr_4fr_1fr]  items-center">
                 <img src={item.img} className="w-15 rounded-2xl" alt="" /><span>{item.name}</span>
               </div>
-              <div className="h-full flex items-center justify-around">
+              <div className="h-full flex items-center justify-center gap-3">
                 {/* minus */}
                 <button onClick={() => {
                   item.quantity === 1 ?
