@@ -15,7 +15,7 @@ export default function Home() {
             placeholder="enter your name"
             value={name}
             onChange={(e) => setName(e.target.value)}
-            className="bg-white/20 w-[50%] min-w-107 rounded-2xl px-3 py-2" />
+            className="bg-white/20 w-[50%] min-w-90 rounded-2xl px-3 py-2" />
         </div>
       </div>
   )

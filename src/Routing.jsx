@@ -100,12 +100,12 @@ function RouterApp() {
     <BrowserRouter>
       <UserName.Provider value={{ name, setName, Cars, ItemCart, setItemCart }}>
         <div className="routing_container h-fit p-5">
-          <div className="flex justify-between items-center w-full px-1">
+          <div className="flex justify-between items-center text-sm min-[500px]:text-base w-full min-[500px]:px-1">
             <div className="justify-self-start">
               <NavLink to="/Products" className="text-white sticky top-5 inline-block bg-linear-to-r from-[#c53222] to-orange-400 p-3 px-4 rounded-2xl transition duration-200 hover:text-black/50 active:scale-95"
               >Back</NavLink>
             </div>
-            <nav className="bg-linear-to-r from-[#c53222] to-orange-400 cursor-default transition duration-300 hover:-translate-y-1 hover:scale-100 min-[700px]:w-fit min-w-55 mx-auto p-3 rounded-2xl">
+            <nav className="bg-linear-to-r from-[#c53222] to-orange-400 cursor-default transition duration-300 hover:-translate-y-1 hover:scale-100 w-48 min-[500px]:w-fit mx-auto min-[500px]:px-3 py-3 rounded-2xl">
               <NavLink to="/" className={({ isActive }) =>
                 isActive ? "text-black/50 font-bold" : "text-white inline-block transition duration-300 hover:text-black/50"}
               >Home</NavLink> |{` `}
@@ -120,6 +120,7 @@ function RouterApp() {
               <NavLink to="/Cart" className="text-white inline-block bg-linear-to-r from-[#c53222] to-orange-400 p-3 rounded-2xl transition duration-200 hover:text-black/50 active:scale-95"
               >Cart: {cartSum}</NavLink>
             </div>
+            <div className=""></div>
           </div>
 
 
@@ -140,12 +141,12 @@ function RouterApp() {
 function Contact() {
   const { name } = useContext(UserName);
   return (
-    <div className="bg-white/15 backdrop-blur-3xl text-wrap border border-white/20 rounded-2xl py-3 px-5 min-w-100 w-[70%] flex flex-col items-start shadow-xl m-auto mt-10">
+    <div className="bg-white/15 backdrop-blur-3xl text-wrap border border-white/20 rounded-2xl py-3 px-5  min-[500px]:w-[70%] flex flex-col items-start shadow-xl m-auto mt-10">
       <p>Email: NYCcardealership@gmail.com</p>
       <p>Number: 765-293-266</p>
       <p className="text-left ">Address: Brooklyn 21 street, Manhattan, NYC, USA</p>
       <p className="text-left ">Message us, dear {name || "user"}:</p>
-      <textarea type="text" placeholder="write your email here" className="bg-black/40 backdrop-blur-1xl border border-white/20 rounded-2xl w-[80%] h-30 mt-1 px-2 py-2 resize-none" />
+      <textarea type="text" placeholder="write your email here" className="bg-black/40 backdrop-blur-1xl border border-white/20 rounded-2xl w-full min-[500px]:w-[80%] h-30 mt-1 px-2 py-2 resize-none" />
     </div>
   )
 }
@@ -156,7 +157,7 @@ function Products() {
   return (
     <div className="routing-carcontainer mt-10 grid grid-cols-2 md:grid-cols-3 justify-items-center">
       {Cars.map((car) => (
-        <div key={car.name} className="carboxes w-50 h-50 mb-10 transition duration-300 hover:scale-105 border-4 border-black/22 rounded-[20px] overflow-hidden">
+        <div key={car.name} className="carboxes w-40 h-40 min-[500px]:w-50 min-[500px]:h-50 mb-10 transition duration-300 hover:scale-105 border-4 border-black/22 rounded-[20px] overflow-hidden">
           <Link to={`/Products/${car.name}`}>
             <img src={car.img} alt="" />
             <h2 className="pt-5">{car.name}</h2>
@@ -192,18 +193,18 @@ function CarPage() {
   }
 
   return (
-    <div className="bg-black/25 backdrop-blur-3xl h-80 mx-5 mt-5  flex rounded-3xl overflow-hidden">
-      <img src={post.imgPortrait} alt="post pic" className="w-[35%] object-cover" />
-      <div className="flex flex-col items-start justify-evenly mx-4 my-2 mb-5">
+    <div className="bg-black/25 backdrop-blur-3xl min-[500px]:h-80 h-fit max-w-190 mx-auto mt-5  flex flex-col min-[500px]:flex-row rounded-3xl overflow-hidden">
+      <img src={post.imgPortrait} alt="post pic" className="min-[500px]:w-[35%] min-[500px]:h-full h-50 object-cover" />
+      <div className="flex flex-col items-start justify-evenly mx-4 my-6">
         <p className="text-4xl text-left">{post.model}</p>
-        <div className="flex flex-col text-left items-start justify-evenly mt-2 mb-5 h-35">
+        <div className="flex flex-col text-left items-start justify-evenly mt-2 mb-2 min-[500px]:mb-5 h-35">
           <p>Manufacturing Year: {post.year}</p>
           <p>Engine: {post.engine}</p>
           <p>Insurance: Included</p>
           <p className="text-2xl">Price: ${post.price.toLocaleString()}</p>
         </div>
 
-        <div>
+        <div className="">
           <SpotlightButton onClick={AddCart}>
             Book Pre-Order
           </SpotlightButton>
@@ -283,7 +284,7 @@ function Cart() {
   
   return (
     <div className="flex flex-col bg-white/10 backdrop-blur-2xl text-wrap 
-          border border-white/20 rounded-3xl font-bold sm:font-normal p-3 mt-8 mx-auto min-h-80 w-[90%] min-w-110 
+          border border-white/20 rounded-3xl font-bold sm:font-normal p-3 mt-8 mx-auto min-h-80 min-[500px]:w-[90%] 
           max-w-200">
       <div className="grid grid-cols-3 items-center border-b pb-3 mb-2">
         <div></div>
@@ -318,7 +319,7 @@ function Cart() {
                 {index + 1}
               </div>
               <div className="grid grid-cols-[1fr_4fr_1fr]  items-center">
-                <img src={item.img} className="w-15 rounded-2xl" alt="" /><span>{item.name}</span>
+                <img src={item.img} className=" rounded-2xl" alt="" /><span>{item.name}</span>
               </div>
               <div className="h-full flex items-center justify-center gap-3">
                 {/* minus */}
